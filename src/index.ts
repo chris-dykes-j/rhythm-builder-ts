@@ -10,13 +10,13 @@ function make_rhythm(measure: Measure) {
 	let count: number = measure.accents;
 	while (count > 0) {
 		for (let i = 0; i < length; i++) {
-			if (bar[i] == 0) {
+			if (bar[i] === 0) {
 				let rng = Math.round(Math.random());
-				if (rng == 1) {
+				if (rng === 1) {
 					bar[i] = rng;
 					console.log(bar[i]);
 					count--;
-					if (count == 0) {
+					if (count === 0) {
 						break;
 					}
 				}
@@ -25,11 +25,22 @@ function make_rhythm(measure: Measure) {
 	}
 	return bar;
 }
-
-let test: Measure = {
-	accents: 4,
-	subdivision: 2,
-	time_signature: 4
+function inputRhythm() {
+	let accents = document.getElementsByName("accents");
+	let subdiv = document.getElementsByName("subdiv");
+	let timesig = document.getElementsByName("timesignature");
 }
 
-console.log(make_rhythm(test));
+document.getElementById("builder")!.addEventListener("submit", e=> {
+	let test = document.getElementById("test")!;
+	test.textContent = "This is a test";
+});
+
+function printRhythm() {
+	let test: Measure = {
+		accents: 4,
+		subdivision: 2,
+		time_signature: 4
+	}
+	console.log(make_rhythm(test));
+}

@@ -9,6 +9,27 @@
 		<link rel="stylesheet" href="">
 	</head>
 	<body>
+		<!--Fiddle with form onsubmit and other stuff!-->
+		<h1 id="title">Rhythm Builder</h1>
+		<form id="builder">
+			<label for="accents">Number of Accents</label>
+			<input type="number" id="accents" name="accents" min="1" max="4">
+			<br>
+			<label for="eigths">Eight Notes</label>
+			<input type="radio" id="eigths" name="subdiv">
+			<label for="eigths">Sixteenth Notes</label>
+			<input type="radio" id="sixteenths" name="subdiv">
+			<label for="eigths">Triplets</label>
+			<input type="radio" id="triplets" name="subdiv">
+			<br>
+			<label for="4/4">4 / 4</label>
+			<input type="radio" id="4/4" name="timesignature">
+			<label for="3/4">3 / 4</label>
+			<input type="radio" id="3/4" name="timesignature">
+			<br>
+			<input type="submit" id="submit" value="Submit">
+		</form>
+		<p id="test"></p>
 		<script src="index.js" async defer></script>
 	</body>
 </html>

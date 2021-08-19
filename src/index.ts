@@ -4,6 +4,28 @@ type Measure = {
 	time_signature: number;
 };
 
+function get_input() {
+	let accent_total = parseInt((<HTMLInputElement>document.getElementById("accents")).value);
+	let subdiv = document.getElementsByName("subdiv");
+	let subdivchoice: number = 0;
+	subdiv.forEach(option => {
+		if ((<HTMLInputElement>option).checked)
+			subdivchoice = parseInt((<HTMLInputElement>option).value);
+	});
+	let timesig = document.getElementsByName("timesignature");
+	let timechoice: number = 0;
+	timesig.forEach(option => {
+		if ((<HTMLInputElement>option).checked)
+			timechoice = parseInt((<HTMLInputElement>option).value);
+	});
+	let measure: Measure = {
+		accents: accent_total,
+		subdivision: subdivchoice,
+		time_signature: timechoice,
+	}
+	return measure;
+}
+
 function make_rhythm(measure: Measure) {
 	let length: number = measure.subdivision * measure.time_signature;
 	let bar: number[] = new Array(length).fill(0);
@@ -14,7 +36,6 @@ function make_rhythm(measure: Measure) {
 				let rng = Math.round(Math.random());
 				if (rng === 1) {
 					bar[i] = rng;
-					console.log(bar[i]);
 					count--;
 					if (count === 0) {
 						break;
@@ -25,22 +46,20 @@ function make_rhythm(measure: Measure) {
 	}
 	return bar;
 }
-function inputRhythm() {
-	let accents = document.getElementsByName("accents");
-	let subdiv = document.getElementsByName("subdiv");
-	let timesig = document.getElementsByName("timesignature");
+
+function display_rhythm(measure: Number[]) {
+	let doc = document.getElementById("result")!;
+	measure.forEach(note => {
+		let img = document.createElement("img");
+		note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
+		img.style.height = "25px";
+		img.style.width = "25px";
+		console.log(note);
+		document.getElementById("result")!.appendChild(img)
+	});
 }
 
-document.getElementById("builder")!.addEventListener("submit", e=> {
-	let test = document.getElementById("test")!;
-	test.textContent = "This is a test";
+document.getElementById("builder")?.addEventListener("submit", e=> {
+	display_rhythm(make_rhythm(get_input()))
+	e.preventDefault();
 });
-
-function printRhythm() {
-	let test: Measure = {
-		accents: 4,
-		subdivision: 2,
-		time_signature: 4
-	}
-	console.log(make_rhythm(test));
-}

@@ -4,6 +4,33 @@
 	font-family: "Nunito", sans-serif;
 	color: white;
 	background-color: #23518c;
+	text-align: center;
 }
-
+h1 {
+	margin: 30px;
+	padding-top: 5%;
+	font-size: 50px;
+}
+label {
+	font-size: 30px;
+	padding: 0px 40px 0px 10px;
+}
+input {
+	margin-bottom: 25px;
+}
+.radio {
+	margin:auto;
+}
+#submit {
+	margin-top: 30px;
+	padding: 20px;
+	font-size: 30px;
+	border-radius: 5%;
+}
+img {
+	height: 60px;
+	width: auto;
+	background-color: blanchedalmond;
+	padding: 20px;
+}
 /* #063b80, #1e5fb3, #23518c; need nice blues for this.*/

@@ -53,8 +53,6 @@ function display_rhythm(measure: Number[]) {
 	measure.forEach(note => {
 		let img = document.createElement("img");
 		note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
-		img.style.height = "25px";
-		img.style.width = "25px";
 		console.log(note);
 		doc.appendChild(img)
 	});

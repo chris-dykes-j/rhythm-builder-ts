@@ -47,6 +47,22 @@ function make_rhythm(measure: Measure) {
 	return bar;
 }
 
+function time_signature(measure: Measure) {
+	let doc = document.getElementById("time")!;
+	doc.innerHTML = "";
+	let img = document.createElement("img");
+	// console.log(measure.time_signature);
+	switch (measure.time_signature) {
+		case 4:
+			img.src = "img/4.png";
+			break;
+		case 3:
+			img.src = "img/3.jpeg";
+			break;
+	}
+	doc.appendChild(img);
+}
+
 function display_rhythm(measure: Number[]) {
 	let doc = document.getElementById("result")!;
 	doc.innerHTML = "";
@@ -59,6 +75,8 @@ function display_rhythm(measure: Number[]) {
 }
 
 document.getElementById("builder")?.addEventListener("submit", e=> {
-	display_rhythm(make_rhythm(get_input()))
+	let m = get_input();
+	time_signature(m);
+	display_rhythm(make_rhythm(m))
 	e.preventDefault();
 });

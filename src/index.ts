@@ -63,20 +63,30 @@ function time_signature(measure: Measure) {
 	doc.appendChild(img);
 }
 
-function display_rhythm(measure: Number[]) {
+function display_rhythm(bar: Number[], measure: Measure) {
 	let doc = document.getElementById("result")!;
 	doc.innerHTML = "";
-	measure.forEach(note => {
+	if (measure.subdivision === 4) {
+		bar.forEach(note => {
+			let img = document.createElement("img");
+			note === 1 ? img.src = "img/16thNote.png" : img.src = "img/16thRest.png";
+			console.log(note);
+			doc.appendChild(img)
+		});
+	} else {
+		bar.forEach(note => {
 		let img = document.createElement("img");
 		note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
 		console.log(note);
 		doc.appendChild(img)
 	});
+	}
+	
 }
 
 document.getElementById("builder")?.addEventListener("submit", e=> {
 	let m = get_input();
 	time_signature(m);
-	display_rhythm(make_rhythm(m))
+	display_rhythm(make_rhythm(m), m);
 	e.preventDefault();
 });

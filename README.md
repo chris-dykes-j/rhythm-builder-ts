@@ -1,1 +1,3 @@
-Rhythm Builder for the browser! WIP, but should be much easier working with the DOM.
+Rhythm Builder for the browser!
+
+WIP. Intended to help new musicians practice reading and playing rhythms.

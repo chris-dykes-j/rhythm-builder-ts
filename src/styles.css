@@ -17,6 +17,14 @@ label {
 	padding: 0px 40px 0px 10px;
 	cursor: pointer;
 }
+#time {
+	display: inline;
+	clear: none;
+}
+#result {
+	display: inline;
+	clear: none;
+}
 #submit {
 	margin: 20px;
 	padding: 20px;
@@ -26,7 +34,7 @@ label {
 img {
 	height: 60px;
 	width: auto;
-	background-color: blanchedalmond;
+	background-color: white/*blanchedalmond*/;
 	padding: 20px;
 }
 input[type="radio"] {

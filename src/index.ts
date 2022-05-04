@@ -73,14 +73,12 @@ function display_rhythm(bar: Number[], measure: Measure) {
 		bar.forEach(note => {
 			let img = document.createElement("img");
 			note === 1 ? img.src = "img/16thNote.png" : img.src = "img/16thRest.png";
-			console.log(note);
 			doc.appendChild(img)
 		});
 	} else {
 		bar.forEach(note => {
 			let img = document.createElement("img");
 			note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
-			console.log(note);
 			doc.appendChild(img)
 		});
 	}

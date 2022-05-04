@@ -1,5 +1,4 @@
-"use strict";
-var _a;
+// Receives form values, and creates a measure.
 function get_input() {
     let accent_total = parseInt(document.getElementById("accents").value);
     let subdiv = document.getElementsByName("subdiv");
@@ -21,6 +20,7 @@ function get_input() {
     };
     return measure;
 }
+// Randomly assigns values to an array (one or zero).
 function make_rhythm(measure) {
     let length = measure.subdivision * measure.time_signature;
     let bar = new Array(length).fill(0);
@@ -41,11 +41,11 @@ function make_rhythm(measure) {
     }
     return bar;
 }
+// Function to display the time signature.
 function time_signature(measure) {
     let doc = document.getElementById("time");
     doc.innerHTML = "";
     let img = document.createElement("img");
-    // console.log(measure.time_signature);
     switch (measure.time_signature) {
         case 4:
             img.src = "img/4.png";
@@ -56,6 +56,7 @@ function time_signature(measure) {
     }
     doc.appendChild(img);
 }
+// Uses array from make_rhythm and displays as notes and rests for enduser.
 function display_rhythm(bar, measure) {
     let doc = document.getElementById("result");
     doc.innerHTML = "";
@@ -63,7 +64,6 @@ function display_rhythm(bar, measure) {
         bar.forEach(note => {
             let img = document.createElement("img");
             note === 1 ? img.src = "img/16thNote.png" : img.src = "img/16thRest.png";
-            console.log(note);
             doc.appendChild(img);
         });
     }
@@ -71,12 +71,11 @@ function display_rhythm(bar, measure) {
         bar.forEach(note => {
             let img = document.createElement("img");
             note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
-            console.log(note);
             doc.appendChild(img);
         });
     }
 }
-(_a = document.getElementById("builder")) === null || _a === void 0 ? void 0 : _a.addEventListener("submit", e => {
+document.getElementById("builder")?.addEventListener("submit", e => {
     let m = get_input();
     time_signature(m);
     display_rhythm(make_rhythm(m), m);

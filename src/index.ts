@@ -69,7 +69,9 @@ function time_signature(measure: Measure) {
 function display_rhythm(bar: Number[], measure: Measure) {
 	let doc = document.getElementById("result")!;
 	doc.innerHTML = "";
-	if (measure.subdivision === 4) {
+	if (measure.subdivision === 2)
+		eighth_notes(bar);
+	else if (measure.subdivision === 4) {
 		bar.forEach(note => {
 			let img = document.createElement("img");
 			note === 1 ? img.src = "img/16thNote.png" : img.src = "img/16thRest.png";
@@ -81,6 +83,29 @@ function display_rhythm(bar: Number[], measure: Measure) {
 			note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
 			doc.appendChild(img)
 		});
+	}
+}
+
+// Separate function to use Quarter note values.
+function eighth_notes(bar: Number[]) {
+	let doc = document.getElementById("result")!;
+	doc.innerHTML = "";
+	for (let i = 0; i < bar.length; i += 2) {
+		let img = document.createElement("img");
+		if (bar[i] === 1 && bar[i + 1] === 1)
+			img.src = "img/8thPair.png";
+		if (bar[i] === 1 && bar[i + 1] === 0)
+			img.src = "img/QuarterNote.png"
+		if (bar[i] === 0 && bar[i + 1] === 0)
+			img.src = "img/QuarterRest.png"
+		if (bar[i] === 0 && bar[i + 1] === 1) {
+			// There is a better way to deal with this; creating a second image for this case.
+			let img2 = document.createElement("img");
+			img2.src = "img/8thRest.png"
+			doc.appendChild(img2);
+			img.src = "img/8thNote.png";
+		}
+		doc.appendChild(img);
 	}
 }
 

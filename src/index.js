@@ -58,18 +58,19 @@ function time_signature(measure) {
 }
 // Uses array from make_rhythm and displays as notes and rests for enduser.
 function display_rhythm(bar, measure) {
-    let doc = document.getElementById("result");
-    doc.innerHTML = "";
     if (measure.subdivision === 2)
         eighth_notes(bar);
-    else if (measure.subdivision === 4) {
-        bar.forEach(note => {
+    else if (measure.subdivision === 4)
+        sixteenth_notes(bar);
+    // Leaving older method here.
+    /* bar.forEach(note => {
             let img = document.createElement("img");
             note === 1 ? img.src = "img/16thNote.png" : img.src = "img/16thRest.png";
             doc.appendChild(img);
-        });
-    }
+    }); */
     else {
+        let doc = document.getElementById("result");
+        doc.innerHTML = "";
         bar.forEach(note => {
             let img = document.createElement("img");
             note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
@@ -85,17 +86,38 @@ function eighth_notes(bar) {
         let img = document.createElement("img");
         if (bar[i] === 1 && bar[i + 1] === 1)
             img.src = "img/8thPair.png";
-        if (bar[i] === 1 && bar[i + 1] === 0)
+        else if (bar[i] === 1 && bar[i + 1] === 0)
             img.src = "img/QuarterNote.png";
-        if (bar[i] === 0 && bar[i + 1] === 0)
+        else if (bar[i] === 0 && bar[i + 1] === 0)
             img.src = "img/QuarterRest.png";
-        if (bar[i] === 0 && bar[i + 1] === 1) {
-            // There is a better way to deal with this; creating a second image for this case.
+        else if (bar[i] === 0 && bar[i + 1] === 1) {
+            // There must be better way to deal with this. Creating a second image for this case.
             let img2 = document.createElement("img");
             img2.src = "img/8thRest.png";
             doc.appendChild(img2);
             img.src = "img/8thNote.png";
         }
+        doc.appendChild(img);
+    }
+}
+// WIP. There are 16 possible results, which are gradually being implemented.
+function sixteenth_notes(bar) {
+    let doc = document.getElementById("result");
+    doc.innerHTML = "";
+    for (let i = 0; i < bar.length; i += 4) {
+        let img = document.createElement("img");
+        let sum = bar[i] + bar[i + 1] + bar[i + 2] + bar[i + 3];
+        console.log(sum);
+        if (sum === 4)
+            img.src = "img/16thFour.png";
+        else if (sum === 3)
+            img.src = "img/gallop.jpeg";
+        else if (sum === 2)
+            img.src = "img/8thPair.png";
+        else if (sum === 1)
+            img.src = "img/QuarterNote.png";
+        else if (sum === 0)
+            img.src = "img/QuarterRest.png";
         doc.appendChild(img);
     }
 }

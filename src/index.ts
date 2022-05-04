@@ -113,5 +113,5 @@ document.getElementById("builder")?.addEventListener("submit", e => {
 	let m = get_input();
 	time_signature(m);
 	display_rhythm(make_rhythm(m), m);
-	e.preventDefault();
+	// e.preventDefault();
 });

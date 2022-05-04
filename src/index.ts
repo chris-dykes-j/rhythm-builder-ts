@@ -4,6 +4,7 @@ type Measure = {
 	time_signature: number;
 };
 
+// Receives form values, and creates a measure.
 function get_input() {
 	let accent_total = parseInt((<HTMLInputElement>document.getElementById("accents")).value);
 	let subdiv = document.getElementsByName("subdiv");
@@ -26,6 +27,7 @@ function get_input() {
 	return measure;
 }
 
+// Randomly assigns values to an array (one or zero).
 function make_rhythm(measure: Measure) {
 	let length: number = measure.subdivision * measure.time_signature;
 	let bar: number[] = new Array(length).fill(0);
@@ -41,17 +43,17 @@ function make_rhythm(measure: Measure) {
 						break;
 					}
 				}
-			}	
+			}
 		}
 	}
 	return bar;
 }
 
+// Function to display the time signature.
 function time_signature(measure: Measure) {
 	let doc = document.getElementById("time")!;
 	doc.innerHTML = "";
 	let img = document.createElement("img");
-	// console.log(measure.time_signature);
 	switch (measure.time_signature) {
 		case 4:
 			img.src = "img/4.png";
@@ -63,6 +65,7 @@ function time_signature(measure: Measure) {
 	doc.appendChild(img);
 }
 
+// Uses array from make_rhythm and displays as notes and rests for enduser.
 function display_rhythm(bar: Number[], measure: Measure) {
 	let doc = document.getElementById("result")!;
 	doc.innerHTML = "";
@@ -75,16 +78,15 @@ function display_rhythm(bar: Number[], measure: Measure) {
 		});
 	} else {
 		bar.forEach(note => {
-		let img = document.createElement("img");
-		note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
-		console.log(note);
-		doc.appendChild(img)
-	});
+			let img = document.createElement("img");
+			note === 1 ? img.src = "img/8thNote.png" : img.src = "img/8thRest.png";
+			console.log(note);
+			doc.appendChild(img)
+		});
 	}
-	
 }
 
-document.getElementById("builder")?.addEventListener("submit", e=> {
+document.getElementById("builder")?.addEventListener("submit", e => {
 	let m = get_input();
 	time_signature(m);
 	display_rhythm(make_rhythm(m), m);

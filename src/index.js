@@ -2,13 +2,13 @@
 function get_input() {
     let accent_total = parseInt(document.getElementById("accents").value);
     let subdiv = document.getElementsByName("subdiv");
-    let subdivchoice = 0;
+    let subdivchoice = 2; // Avoids crashing bug.
     subdiv.forEach(option => {
         if (option.checked)
             subdivchoice = parseInt(option.value);
     });
     let timesig = document.getElementsByName("timesignature");
-    let timechoice = 0;
+    let timechoice = 4; // Avoids crashing bug.
     timesig.forEach(option => {
         if (option.checked)
             timechoice = parseInt(option.value);

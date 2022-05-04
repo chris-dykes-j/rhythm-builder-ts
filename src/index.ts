@@ -8,13 +8,13 @@ type Measure = {
 function get_input() {
 	let accent_total = parseInt((<HTMLInputElement>document.getElementById("accents")).value);
 	let subdiv = document.getElementsByName("subdiv");
-	let subdivchoice: number = 0;
+	let subdivchoice: number = 2; // Avoids crashing bug.
 	subdiv.forEach(option => {
 		if ((<HTMLInputElement>option).checked)
 			subdivchoice = parseInt((<HTMLInputElement>option).value);
 	});
 	let timesig = document.getElementsByName("timesignature");
-	let timechoice: number = 0;
+	let timechoice: number = 4; // Avoids crashing bug.
 	timesig.forEach(option => {
 		if ((<HTMLInputElement>option).checked)
 			timechoice = parseInt((<HTMLInputElement>option).value);
